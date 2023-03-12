@@ -29,7 +29,6 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt-get update
-
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 sh -eux <<EOF
@@ -39,11 +38,7 @@ EOF
 dockerd-rootless-setuptool.sh install
 rm get-docker.sh
 
-
-
-
-
-# after instance started
+# setup install directory
 mkdir ~/.installs
 export INSTALLS=$HOME/.installs
 
@@ -54,7 +49,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # install mamba
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-bash Mambaforge-Linux-x86_64.sh -b -p $INSTALLS/mambaforge
+bash Mambaforge-Linux-x86_64.sh -p $INSTALLS/mambaforge
 rm Mambaforge-Linux-x86_64.sh
 
 # setup tmux
